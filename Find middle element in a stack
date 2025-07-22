@@ -1,0 +1,44 @@
+#include <iostream>
+#include<stack>
+using namespace std;
+
+
+void findMiddleElement(stack<int> &s,int len){
+  
+  if(s.empty()){
+    cout<<"No element in stack"<<endl;
+    return;
+  }
+
+  if(s.size() == len){
+    cout<<"Mid is :"<<s.top()<<endl;
+    return;
+  }
+  int top = s.top();
+  s.pop();
+  findMiddleElement(s,len);
+  s.push(top);
+
+}
+int main() {
+  stack<int> s;
+
+  s.push(1);
+  s.push(2);
+  s.push(3);
+  s.push(4);
+  s.push(5);
+  s.push(6);
+  s.push(7);
+
+  int len = s.size();
+  if(len&1){
+    len = len / 2 + 1;
+  }
+  else{
+    len = len / 2;
+  }
+  findMiddleElement(s,len);
+
+  return 0;
+}
