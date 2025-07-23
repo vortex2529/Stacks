@@ -1,0 +1,47 @@
+class Solution {
+  public:
+    int checkRedundancy(string s) {
+        stack<char> st;
+        
+        for(auto ch:s){
+            if(ch == '('){
+                st.push(ch);
+            }
+            else if(ch == '+' || ch == '-' || ch == '*' ||  ch == '/'){
+                st.push(ch);
+            }
+            else{
+                // closing ya alphabets
+                if(ch== ')'){
+                    bool op = false;
+                    while(st.top() != '('){
+                        char top = st.top();
+                        if(top == '+' || top == '-' || top == '*' || top == '/'){
+                            op = true;
+                            st.pop();
+                        }
+                    }
+                    
+                    if(op == true){
+                        st.pop();
+                        op = false;
+                    }
+                }
+                else{
+                    continue;
+                }
+            }
+        }
+        
+        while(!st.empty()){
+            if(st.top() == '(') break;
+            st.pop();
+        }
+        if(st.empty()){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+};
