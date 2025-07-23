@@ -9,7 +9,7 @@ void insertSorted(stack<int> & s,int val){
     return;
   }
 
-  if(val > s.top()){
+  if(val >= s.top()){
     s.push(val);
     return;
   }
