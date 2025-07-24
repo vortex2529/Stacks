@@ -1,0 +1,50 @@
+class Solution {
+  public:
+    int celebrity(vector<vector<int> >& mat) {
+        int n = mat.size();
+        
+        stack<int> st;
+        
+        // push all persons 
+        for(int i=0;i<n;i++){
+            st.push(i);
+        }
+        
+        
+        while(st.size() != 1){
+            int a = st.top();st.pop();
+            int b = st.top();st.pop();
+            
+            if(mat[a][b]){
+                // a is not celebrity,b might be
+                st.push(b); 
+            }
+            else{
+                // b is not celebrity,a might be
+                st.push(a);
+            }
+        }
+        
+        
+        int mightBecelebrity = st.top();
+        st.pop();
+        
+        
+        // mightBecelebrity should not know to anyone
+        for(int i=0;i<n;i++){
+            if(mat[mightBecelebrity][i] != 0 && i != mightBecelebrity){
+                return -1;
+            }
+        }
+        
+        // mightBecelebrity is known to all
+        for(int i=0;i<n;i++){
+            if(mat[i][mightBecelebrity] == 0 && i != mightBecelebrity){
+                return -1;
+            }
+        }
+        
+        
+        return mightBecelebrity;
+    }
+};
