@@ -28,6 +28,7 @@ public:
         
     }
 
+
     // Pushes 'X' into the Mth stack. Returns true if it gets pushed into the stack, and false otherwise.
     bool push(int x, int m)
     {
@@ -54,5 +55,11 @@ public:
         next[index] = freespot;
         freespot = index;
         return arr[index];
+    }
+
+    ~NStack(){
+        delete[] arr;
+        delete[] top;
+        delete[] next;
     }
 };
