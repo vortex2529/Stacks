@@ -1,0 +1,33 @@
+class Solution {
+    class Car{
+        public:
+        int pos,speed;
+
+        Car(int p,int s):pos(p),speed(s){};
+    };
+    static bool cmp(Car& A,Car& B){
+        return A.pos < B.pos;
+    }
+public:
+
+    int carFleet(int target, vector<int>& position, vector<int>& speed) {
+        vector<Car> cars;
+        for(int i=0;i<position.size();i++){
+            Car obj(position[i],speed[i]);
+            cars.push_back(obj);
+        }
+
+        sort(cars.begin(),cars.end(),cmp);
+
+        stack<float> st;
+        for(auto car:cars){
+           float time = (target - car.pos)/((float) car.speed);
+            while(!st.empty() && time >= st.top()){
+                st.pop();
+            }
+            st.push(time);
+        }
+
+        return st.size();
+    }
+};
