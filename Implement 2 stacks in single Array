@@ -1,0 +1,104 @@
+#include <iostream>
+using namespace std;
+
+class Stack{
+
+  public:
+   int *arr;
+   int size;
+   int top1;
+   int top2;
+
+   Stack(int size){
+    this->size = size;
+    arr = new int[size];
+    top1 = -1;
+    top2 = size;
+   }
+
+   void push1(int data){
+      if(top2-top1==1){
+        cout<<"Stack 1 overflow!!"<<endl;
+      }
+      else{
+        top1++;
+        arr[top1] = data;
+      }
+   }
+
+   void pop1(){
+      if(top1==-1){
+        cout<<"Stack 1 underflow !!"<<endl;
+      }
+      else{
+        top1--;
+      }
+   }
+
+   void push2(int data){
+      if(top2-top1==1){
+        cout<<"Stack 2 overflow!!"<<endl;
+      }
+      else{
+        top2--;
+        arr[top2] = data;
+      }
+   }
+
+   void pop2(){
+      if(top2==size){
+        cout<<"Stack 2 underflow !!"<<endl;
+      }
+      else{
+        top2++;
+      }
+   }
+
+   int getTop1(){
+      if(top1 == -1){
+        cout<<"Stack 1 underflow"<<endl;
+        return -1;
+      }
+      else{
+        return arr[top1];
+      }
+   }
+   int getTop2(){
+      if(top2 == size){
+        cout<<"Stack 2 underflow"<<endl;
+        return -1;
+      }
+      else{
+        return arr[top2];
+      }
+   }
+
+   int getSize1(){
+      return top1+1;
+   }
+   int getSize2(){
+      return size-top2;
+   }
+
+   bool isEmpty1(){
+      if(top1==-1){
+        return true;
+      }
+      else{
+        return false;
+      }
+   }
+
+   bool isEmpty2(){
+      if(top2==size){
+        return true;
+      }
+      else{
+        return false;
+      }
+   }
+};
+
+int main() {
+  return 0;
+}
